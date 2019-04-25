@@ -1,22 +1,18 @@
-//
-//  ViewController.swift
-//  BunqTest
-//
 //  Created by Alex Cuello on 23/04/2019.
-//  Copyright © 2019 eironeia. All rights reserved.
-//
+//  Copyright © 2019 eironeia. All rights reserved./
 
 import UIKit
 
-class ViewController: UIViewController {
+class EmployeeListViewController: UIViewController {
 
     let ed = EmployeeDirectory()
+    var viewModel: EmployeeListViewModelInterface!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ed.update()
         NotificationCenter.default.addObserver(self, selector: #selector(printEmployees), name: .employeeDirectoryDidUpdate, object: nil)
-
+        view.backgroundColor = .lightGray
     }
 
     @objc
@@ -26,14 +22,5 @@ class ViewController: UIViewController {
         employee.salaryWithCurrency()
         
 //        employees.forEach { print($0.name) }
-
-
-    }
-}
-
-extension Employee {
-
-    func magic() {
-        
     }
 }

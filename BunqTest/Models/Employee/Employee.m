@@ -20,6 +20,5 @@ NSString* const kSalaryCurrency = @"JPY";
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
     formatter.currencyCode = kSalaryCurrency;
     return [formatter stringFromNumber:_salary];
-
 }
 @end

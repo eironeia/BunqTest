@@ -20,7 +20,7 @@ NSString* const kEmployeeDirectoryDidUpdateNotification =
 #pragma mark - Privates
 - (void)BA_doUpdateInBackground
 {
-//    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:2];
     NSArray* name = @[@"Anne", @"Lucas", @"Marc", @"Zeus", @"Hermes", @"Bart", @"Paul", @"John",
                       @"Ringo", @"Dave", @"Taylor"];
     NSArray* surnames = @[@"Hawkins", @"Simpson", @"Lennon", @"Grohl", @"Hawkins", @"Jacobs",

@@ -4,7 +4,12 @@
 #import <Foundation/Foundation.h>
 // notification posted when the directory finishes updating
 extern NSString* const kEmployeeDirectoryDidUpdateNotification;
-@interface EmployeeDirectory : NSObject
+//@protocol EmployeDirectoryInterface <NSObject>
+//@property (readonly) NSArray* employees; // returns NSArray of Employee
+//@property (readonly) BOOL isUpdating;
+//- (void)update;
+//@end
+@interface EmployeeDirectory : NSObject // <EmployeDirectoryInterface>
 @property (readonly) NSArray* employees; // returns NSArray of Employee
 @property (readonly) BOOL isUpdating;
 - (void)update;
