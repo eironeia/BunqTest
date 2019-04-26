@@ -53,7 +53,6 @@
 		6196F707227196DE00E71D1A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				6196F7402272F9AE00E71D1A /* Views */,
 				6196F70C227197A200E71D1A /* Coordinator.swift */,
 				6196F73A2272335F00E71D1A /* Cells */,
 				6196F708227196F400E71D1A /* EmployeeList */,
@@ -101,13 +100,6 @@
 				6196F73E227257D700E71D1A /* UIView+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		6196F7402272F9AE00E71D1A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		61B8C13C226F6B8F00D4564E = {

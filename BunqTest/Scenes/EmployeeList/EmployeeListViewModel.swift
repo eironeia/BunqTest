@@ -6,12 +6,14 @@ import Foundation
 protocol EmployeeListViewModelInterface {
     var employeeList: (([EmployeeListCellDescriptor]) -> Void)? { get set }
     func getEmployeeList()
+    func sortEmployeeList()
 }
 
 class EmployeeListViewModel: EmployeeListViewModelInterface {
 
     //MARK: - Stored properties
     private var directory: EmployeeDirectory
+    private var employees: [Employee] = []
 
     //MARK: - EmployeeListViewModelInterface
     var employeeList: (([EmployeeListCellDescriptor]) -> Void)?
@@ -25,16 +27,28 @@ class EmployeeListViewModel: EmployeeListViewModelInterface {
                                                object: nil)
     }
 
+    // MARK: - EmployeeListViewModelInterface
     func getEmployeeList() {
         directory.update()
     }
 
+    func sortEmployeeList() {
+        employees = employees.sorted { return $0.name < $1.name }
+        employeeList?(mapEmployessToCellDescriptor(employees))
+    }
+}
+
+// MARK: - Private extension
+private extension EmployeeListViewModel {
     @objc
-    private func updateEmployeeList() {
-        let employees = directory.employees as? [Employee] ?? []
-        let cellDescriptor = employees.map { EmployeeListCellDescriptor(name: $0.name,
-                                                                        birthday: String(describing: $0.birthYear),
-                                                                        salary: $0.salaryWithCurrency()) }
-        employeeList?(cellDescriptor)
+    func updateEmployeeList() {
+        employees = directory.employees as? [Employee] ?? []
+        employeeList?(mapEmployessToCellDescriptor(employees))
+    }
+
+    func mapEmployessToCellDescriptor(_ employees: [Employee]) -> [EmployeeListCellDescriptor] {
+        return employees.map { EmployeeListCellDescriptor(name: $0.name,
+                                                          birthday: String(describing: $0.birthYear),
+                                                          salary: $0.salaryWithCurrency()) }
     }
 }

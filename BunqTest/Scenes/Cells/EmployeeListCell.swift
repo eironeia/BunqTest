@@ -14,7 +14,7 @@ class EmployeeListCell: UITableViewCell {
     // MARK: - UI
     private let container: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 8
+        stackView.spacing = 2
         stackView.axis = .vertical
         return stackView
     }()
@@ -22,7 +22,6 @@ class EmployeeListCell: UITableViewCell {
     private let name: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 22)
-        label.textAlignment = .center   
         return label
     }()
 
@@ -30,26 +29,15 @@ class EmployeeListCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.spacing = 2
         stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .fillEqually
         return stackView
     }()
 
     private lazy var birthday: UILabel = getAttributeLabel()
-    private lazy var salary: UILabel = getAttributeLabel()
-    private lazy var birthdayTitle: UILabel = {
-        let label = getAttributeTitleLabel()
-        label.text = "Birthday"
+    private lazy var salary: UILabel = {
+        let label = getAttributeLabel()
+        label.textAlignment = .right
         return label
     }()
-
-    private lazy var salaryTitle: UILabel = {
-        let label = getAttributeTitleLabel()
-        label.text = "Salary"
-        return label
-    }()
-
-
 
     // MARK: - Stored properties
     static var identifier = String(describing: EmployeeListCell.self)
@@ -74,47 +62,19 @@ class EmployeeListCell: UITableViewCell {
 
 private extension EmployeeListCell {
     func setupUI() {
-
         setupLayout()
     }
 
     func setupLayout() {
         addSubviewWithAutolayout(container)
-        container.fillSuperview(withEdges: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
-        container.addArrangedSubview(name)
-        container.addArrangedSubview(attributesContainer)
-
-        [(birthday, birthdayTitle), (salary, salaryTitle)].forEach { (value, title) in
-            let container = getAttributeContainer()
-            container.addArrangedSubview(value)
-            container.addArrangedSubview(title)
-            attributesContainer.addArrangedSubview(container)
-        }
+        container.fillSuperview(withEdges: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
+        [name, attributesContainer].forEach(container.addArrangedSubview)
+        [birthday, salary].forEach(attributesContainer.addArrangedSubview)
     }
 
     func getAttributeLabel() -> UILabel {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18)
         return label
     }
-
-    func getAttributeTitleLabel() -> UILabel {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15, weight: .light)
-        label.textAlignment = .center
-        label.setContentCompressionResistancePriority(.required, for: .vertical)
-        label.setContentHuggingPriority(.required, for: .vertical)
-        return label
-    }
-
-    func getAttributeContainer() -> UIStackView {
-        let stackView = UIStackView()
-        stackView.spacing = 2
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        return stackView
-    }
-
-
 }
