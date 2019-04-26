@@ -22,6 +22,7 @@ class EmployeeListCell: UITableViewCell {
     private let name: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 22)
+        label.textColor = DisplayData.nameTextColor //.init(hex: 0x18A999)
         return label
     }()
 
@@ -42,6 +43,7 @@ class EmployeeListCell: UITableViewCell {
     // MARK: - Stored properties
     static var identifier = String(describing: EmployeeListCell.self)
 
+    // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -60,8 +62,10 @@ class EmployeeListCell: UITableViewCell {
     }
 }
 
+// MARK: - Private extension
 private extension EmployeeListCell {
     func setupUI() {
+        backgroundColor = DisplayData.backgroundColor //UIColor(hex: 0x484349)
         setupLayout()
     }
 
@@ -75,6 +79,17 @@ private extension EmployeeListCell {
     func getAttributeLabel() -> UILabel {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
+        label.textColor = DisplayData.attributeTextColor //.init(hex: 0x8AF3FF)
         return label
+    }
+}
+
+// MARK: - DisplayData
+private extension EmployeeListCell {
+    enum DisplayData {
+        //colors
+        static var nameTextColor: UIColor { return .init(hex: 0x9eed5e) }
+        static var attributeTextColor: UIColor { return .init(hex: 0x1d8745) }
+        static var backgroundColor: UIColor { return .init(hex: 0x9eed5e) }
     }
 }

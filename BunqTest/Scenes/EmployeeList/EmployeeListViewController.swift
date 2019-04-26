@@ -40,12 +40,7 @@ class EmployeeListViewController: UIViewController {
 // MARK: - Private extension
 private extension EmployeeListViewController {
     func setupUI() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort",
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(sortEmployeeList))
-        title = "Employees"
+        setupNavigationController()
         setupLayout()
     }
 
@@ -54,6 +49,20 @@ private extension EmployeeListViewController {
         tableView.fillSuperview()
         view.addSubviewWithAutolayout(activityIndicator)
         activityIndicator.anchorCenterSuperview()
+    }
+
+    func setupNavigationController() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let sortBarButtonItem = UIBarButtonItem(title: DisplayData.sortText,
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(sortEmployeeList))
+        sortBarButtonItem.tintColor = DisplayData.barButtonItemTintColor
+        navigationItem.rightBarButtonItem = sortBarButtonItem
+        title = DisplayData.employeesText
+        navigationController?.navigationBar.barTintColor = DisplayData.navigationBarTintColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : DisplayData.navigationBarTitleColor]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : DisplayData.navigationBarTitleColor]
     }
 
     func bindViewModel() {
@@ -88,5 +97,18 @@ extension EmployeeListViewController: UITableViewDataSource {
         }
         cell.setup(descriptor: datasource[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - DisplayData
+private extension EmployeeListViewController {
+    enum DisplayData {
+        //text
+        static var employeesText: String { return "Employees" }
+        static var sortText: String { return "Sort" }
+        //colors
+        static var barButtonItemTintColor: UIColor { return .init(hex: 0x9eed5e) }
+        static var navigationBarTintColor: UIColor { return .init(hex: 0x1d8745) }
+        static var navigationBarTitleColor: UIColor { return .init(hex: 0x9eed5e) }
     }
 }
