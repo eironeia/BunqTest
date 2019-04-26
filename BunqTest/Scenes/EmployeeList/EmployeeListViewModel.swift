@@ -33,8 +33,8 @@ class EmployeeListViewModel: EmployeeListViewModelInterface {
     }
 
     func sortEmployeeList() {
-        employees = employees.sorted { return $0.name < $1.name }
-        employeeList?(mapEmployessToCellDescriptor(employees))
+        employees = employees.sorted { $0.name < $1.name }
+        employeeList?(mapEmployeesToCellDescriptor(employees))
     }
 }
 
@@ -42,11 +42,11 @@ class EmployeeListViewModel: EmployeeListViewModelInterface {
 private extension EmployeeListViewModel {
     @objc
     func updateEmployeeList() {
-        employees = directory.employees as? [Employee] ?? []
-        employeeList?(mapEmployessToCellDescriptor(employees))
+        employees = directory.employees as? [Employee] ?? [] //Maybe some error handling
+        employeeList?(mapEmployeesToCellDescriptor(employees))
     }
 
-    func mapEmployessToCellDescriptor(_ employees: [Employee]) -> [EmployeeListCellDescriptor] {
+    func mapEmployeesToCellDescriptor(_ employees: [Employee]) -> [EmployeeListCellDescriptor] {
         return employees.map { EmployeeListCellDescriptor(name: $0.name,
                                                           birthday: String(describing: $0.birthYear),
                                                           salary: $0.salaryWithCurrency()) }

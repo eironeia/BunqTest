@@ -64,13 +64,12 @@ private extension EmployeeListViewController {
                 self?.tableView.reloadData()
             }
         }
-
         viewModel.getEmployeeList()
     }
 
     @objc
     func sortEmployeeList() {
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             self.viewModel.sortEmployeeList()
         }
     }
