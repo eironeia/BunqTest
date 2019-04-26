@@ -4,7 +4,7 @@
 #import "Employee.h"
 
 static NSUInteger const kStartingSalary = 10000;
-NSString* const kSalaryCurrency = @"JPY";
+NSString* const kSalaryCurrency = @"EUR";
 @implementation Employee
 - (instancetype)initWithName:(NSString*)name birthYear:(NSUInteger)birthYear {
     self = [super init];

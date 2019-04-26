@@ -9,6 +9,8 @@ protocol CoordinatorInterface {
 
 struct Coordinator: CoordinatorInterface  {
     func start(navigationController: UINavigationController?) {
-        
+        let viewControllerFactory = EmployeeListViewControllerFactory()
+        let viewController = viewControllerFactory.getEmployeeListViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

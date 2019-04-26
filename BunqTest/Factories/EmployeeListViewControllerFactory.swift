@@ -9,7 +9,8 @@ protocol EmployeeListViewControllerFactoryInterface {
 
 struct EmployeeListViewControllerFactory: EmployeeListViewControllerFactoryInterface {
     func getEmployeeListViewController() -> UIViewController {
-        let viewModel = EmployeeListViewModel(
+        let directory = EmployeeDirectory()
+        let viewModel = EmployeeListViewModel(directory: directory)
         let viewController = EmployeeListViewController()
         viewController.viewModel = viewModel
         return viewController
