@@ -17,6 +17,8 @@ class EmployeeListViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
+        tableView.separatorColor = .lightGray
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         tableView.tableFooterView = UIView()
         tableView.register(EmployeeListCell.self, forCellReuseIdentifier: EmployeeListCell.identifier)
         return tableView
@@ -107,8 +109,8 @@ private extension EmployeeListViewController {
         static var employeesText: String { return "Employees" }
         static var sortText: String { return "Sort" }
         //colors
-        static var barButtonItemTintColor: UIColor { return .init(hex: 0x9eed5e) }
-        static var navigationBarTintColor: UIColor { return .init(hex: 0x1d8745) }
-        static var navigationBarTitleColor: UIColor { return .init(hex: 0x9eed5e) }
+        static var barButtonItemTintColor: UIColor { return .white }
+        static var navigationBarTintColor: UIColor { return .init(hex: 0x2f95d9) }
+        static var navigationBarTitleColor: UIColor { return .white }
     }
 }

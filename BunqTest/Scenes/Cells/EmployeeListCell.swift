@@ -22,7 +22,7 @@ class EmployeeListCell: UITableViewCell {
     private let name: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 22)
-        label.textColor = DisplayData.nameTextColor //.init(hex: 0x18A999)
+        label.textColor = DisplayData.nameTextColor
         return label
     }()
 
@@ -33,10 +33,18 @@ class EmployeeListCell: UITableViewCell {
         return stackView
     }()
 
-    private lazy var birthday: UILabel = getAttributeLabel()
+    private lazy var birthday: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = DisplayData.birthdayTextColor
+        return label
+    }()
+
     private lazy var salary: UILabel = {
-        let label = getAttributeLabel()
+        let label = UILabel()
         label.textAlignment = .right
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = DisplayData.salaryTextColor
         return label
     }()
 
@@ -65,7 +73,7 @@ class EmployeeListCell: UITableViewCell {
 // MARK: - Private extension
 private extension EmployeeListCell {
     func setupUI() {
-        backgroundColor = DisplayData.backgroundColor //UIColor(hex: 0x484349)
+        backgroundColor = DisplayData.backgroundColor
         setupLayout()
     }
 
@@ -75,21 +83,15 @@ private extension EmployeeListCell {
         [name, attributesContainer].forEach(container.addArrangedSubview)
         [birthday, salary].forEach(attributesContainer.addArrangedSubview)
     }
-
-    func getAttributeLabel() -> UILabel {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 18)
-        label.textColor = DisplayData.attributeTextColor //.init(hex: 0x8AF3FF)
-        return label
-    }
 }
 
 // MARK: - DisplayData
 private extension EmployeeListCell {
     enum DisplayData {
         //colors
-        static var nameTextColor: UIColor { return .init(hex: 0x9eed5e) }
-        static var attributeTextColor: UIColor { return .init(hex: 0x1d8745) }
-        static var backgroundColor: UIColor { return .init(hex: 0x9eed5e) }
+        static var nameTextColor: UIColor { return .init(hex: 0x474747) }
+        static var birthdayTextColor: UIColor { return .init(hex: 0xff7818) }
+        static var salaryTextColor: UIColor { return .init(hex: 0x2a9c46) }
+        static var backgroundColor: UIColor { return .white }
     }
 }
